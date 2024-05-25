@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Box, Heading, Input, useToast, Button, FormControl, FormLabel, Text } from '@chakra-ui/react';
+import { Box, Heading, Input, useToast, Button, FormControl, FormLabel, Text, InputGroup, InputRightElement } from '@chakra-ui/react';
 import Navbar from './Navbar';
 
 const Register = () => {
@@ -9,7 +9,8 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
     const toast = useToast();
-
+    const [show, setShow] = React.useState(false)
+    const handleClick = () => setShow(!show)
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -75,7 +76,19 @@ const Register = () => {
                     </FormControl>
                     <FormControl id="password" isRequired mt={4}>
                         <FormLabel>Password</FormLabel>
-                        <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                        <InputGroup size='md'>
+                            <Input
+                                pr='4.5rem'
+                                type={show ? 'text' : 'password'}
+                                placeholder='Enter password'
+                                value={password} onChange={(e) => setPassword(e.target.value)}
+                            />
+                            <InputRightElement width='4.5rem'>
+                                <Button h='1.75rem' size='sm' onClick={handleClick}>
+                                    {show ? 'Hide' : 'Show'}
+                                </Button>
+                            </InputRightElement>
+                        </InputGroup>
                     </FormControl>
 
                     <Button type="submit" colorScheme="purple" mt={4} width="100%">
@@ -83,7 +96,7 @@ const Register = () => {
                     </Button>
                 </form>
                 <Text mt={4} textAlign="center">
-                    Already have an account? <Link to="/login">Login here</Link>
+                    Already have an account? <Link to="/login"><Text color={"purple"}> Login here</Text></Link>
                 </Text>
             </Box>
         </>

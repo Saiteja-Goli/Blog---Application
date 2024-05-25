@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { Box, useToast, Heading, Input, Button, FormControl, FormLabel, FormHelperText, Text } from "@chakra-ui/react";
+import { Box, useToast, Heading, Input, Button, FormControl, FormLabel, FormHelperText, Text, InputGroup, InputRightElement } from "@chakra-ui/react";
 import Navbar from "./Navbar";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../ContextAPI/AuthContext";
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
+
+    const [show, setShow] = React.useState(false)
+    const handleClick = () => setShow(!show)
+
 
     const toast = useToast()
     const navigate = useNavigate()
@@ -65,7 +68,7 @@ const Login = () => {
         } catch (error) {
             console.error(error);
             toast({
-                title: 'Failed Account created.',
+                title: 'Failed to Login',
                 description: "Something Went Wrong",
                 status: "error",
                 duration: 5000,
@@ -83,18 +86,31 @@ const Login = () => {
                 <form onSubmit={handleSubmit}>
                     <FormControl id="email" isRequired>
                         <FormLabel>Email address</FormLabel>
-                        <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                        <Input type="email" placeholder='Enter Email' value={email} onChange={(e) => setEmail(e.target.value)} />
                     </FormControl>
                     <FormControl id="password" isRequired mt={4}>
                         <FormLabel>Password</FormLabel>
-                        <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+
+                        <InputGroup size='md'>
+                            <Input
+                                pr='4.5rem'
+                                type={show ? 'text' : 'password'}
+                                value={password} onChange={(e) => setPassword(e.target.value)}
+                                placeholder='Enter password'
+                            />
+                            <InputRightElement width='4.5rem'>
+                                <Button h='1.75rem' size='sm' onClick={handleClick}>
+                                    {show ? 'Hide' : 'Show'}
+                                </Button>
+                            </InputRightElement>
+                        </InputGroup>
                     </FormControl>
-                    {error && <FormHelperText color="red.500" mt={2}>{error}</FormHelperText>}
+
                     <Button type="submit" colorScheme="purple" mt={4} width="100%">
                         Login
                     </Button>
-                    <Text mt={4} textAlign="center">
-                        Don't have an account? <Link to="/register">Register here</Link>
+                    <Text mt={4} textAlign="center" >
+                        Don't have an account? <Link to="/register" ><Text color={"purple"}> Register here</Text></Link>
                     </Text>
                 </form>
             </Box>

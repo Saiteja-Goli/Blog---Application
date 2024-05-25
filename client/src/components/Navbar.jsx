@@ -1,11 +1,12 @@
 import React from 'react';
-import { Box, Flex, Heading, Button } from '@chakra-ui/react';
+import { Box, useToast, Flex, Heading, Button } from '@chakra-ui/react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../ContextAPI/AuthContext';
 
 const Navbar = () => {
   const { isLoggedIn, login, logout } = useAuth();
   const navigate = useNavigate();
+  const toast = useToast()
 
   const handleLogin = () => {
     navigate('/login');
@@ -14,13 +15,23 @@ const Navbar = () => {
   const handleLogout = () => {
     logout();
     localStorage.clear();
+    toast({
+      title: 'Successfull',
+      description: 'You have been logged out',
+      status: 'success',
+      duration: 5000,
+      isClosable: true,
+    });
     navigate('/');
   };
 
   return (
     <Box
       backgroundColor="purple.400"
-      p={4}
+      pr={6}
+      pl={10}
+      pt={5}
+      pb={5}
       position="fixed"
       top="0"
       zIndex="100"
@@ -28,9 +39,13 @@ const Navbar = () => {
       width="100%"
     >
       <Flex justify="space-between" align="center">
-        <Heading color="white"><Link to="/">Blogs</Link></Heading>
+        <Heading fontSize="3xl"
+          fontWeight="bold"
+          color="whitesmoke"
+          textTransform="uppercase"
+          letterSpacing="wider"><Link to="/">Blogs</Link></Heading>
         <Button
-          colorScheme="whiteAlpha"
+          colorScheme={isLoggedIn ? "red" : "green"}
           zIndex="10"
           onClick={isLoggedIn ? handleLogout : handleLogin}
         >

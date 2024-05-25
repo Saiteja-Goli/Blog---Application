@@ -66,8 +66,11 @@ const CreateBlog = () => {
     return (
       <>
         <Navbar />
-        <Box mt={20} textAlign="center">
-          <Text fontSize="xl" fontWeight="bold">Please log in to create a blog</Text>
+        <Button colorScheme="red" ml={10} mt={"100px"}onClick={() => {
+          navigate("/blogs");
+        }}>Go Back</Button>
+        <Box mt={"10px"} textAlign="center">
+          <Text fontSize="xl" fontWeight="bold">Please LogIn to create a blog</Text>
         </Box>
       </>
     );
@@ -76,7 +79,7 @@ const CreateBlog = () => {
   return (
     <>
       <Navbar />
-      <Box mt={20} mx="auto" w="50%">
+      <Box mt={"100px"} mx="auto" w="50%" shadow="base" p={5} borderRadius={10}>
         <Box mb={4}>
           <Input
             placeholder="Title"

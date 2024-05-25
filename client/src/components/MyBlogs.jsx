@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
-import { Box, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, FormControl, FormLabel, Input, Textarea, useToast, Text } from '@chakra-ui/react';
+import { Box, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, FormControl, FormLabel, Input, Textarea, useToast, Text, Center } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 
 const MyBlogs = () => {
@@ -46,7 +46,7 @@ const MyBlogs = () => {
             };
             fetchUserBlogs();
         }
-    }, [toast, token]);
+    }, [token]);
 
     const handleEdit = (blogId) => {
         const selectedBlog = userBlogs.find((blog) => blog._id === blogId);
@@ -105,6 +105,7 @@ const MyBlogs = () => {
             });
         }
     };
+
     const handleDelete = async (blogId) => {
         try {
             const token = JSON.parse(localStorage.getItem('token'));
@@ -146,11 +147,18 @@ const MyBlogs = () => {
     return (
         <>
             <Navbar />
-            <Button ml={20} mt={20} colorScheme='teal' onClick={() => { navigate('/blogs') }}>Back</Button>
+            <Button colorScheme="red" ml={10} mt={"100px"} position="fixed"
+                top="0px"
+                zIndex="100"
+                onClick={() => { navigate('/blogs') }}>Back</Button>
             {token ? (
-                <Box mx="auto" w="50%">
-                    <Text fontSize="2xl" fontWeight="bold" mb={4}>My Blogs</Text>
-                    {userBlogs.map(blog => {
+                <Box mx="auto" w="50%" mt={"100px"}>
+                    <Text fontSize="3xl"
+                        fontWeight="bold"
+                        color="purple.300"
+                        textTransform="uppercase"
+                        letterSpacing="wider" mb={4}>My Blogs</Text>
+                    {userBlogs.length > 0  ? userBlogs.map(blog => {
                         const createdAtDate = new Date(blog.createdAt);
                         const formattedDate = `${createdAtDate.toLocaleDateString()} ${createdAtDate.toLocaleTimeString()}`;
                         return (
@@ -165,12 +173,12 @@ const MyBlogs = () => {
                                 </Box>
                             </Box>
                         );
-                    })}
+                    }) : <Center> <Text fontSize="2xl" fontWeight="bold" mb={4}>No Blogs</Text> </Center>}
                 </Box>
             ) : (
-                <Box mt={20} mx="auto" w="50%">
-                    <Center fontSize="2xl" fontWeight="bold" mb={4}>Please log in to view your blogs</Center>
-                </Box>
+                <Center>
+                    <Text fontSize="2xl" mt={"100px"}fontWeight="bold">Please LogIn to view your blogs</Text>
+                </Center>
             )}
             <Modal isOpen={isEditModalOpen} onClose={() => setIsEditModalOpen(false)}>
                 <ModalOverlay />
