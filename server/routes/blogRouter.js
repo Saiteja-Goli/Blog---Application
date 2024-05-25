@@ -7,14 +7,37 @@ const { authentication } = require('../middleware/authentication');
 const blogController = Router();
 
 // Get all blogs (public route, no authentication required)
+// blogController.get('/allBlogs', async (req, res) => {
+//     try {
+//         const blogPosts = await blogModel.find().populate('authorId', 'name');
+//         res.json(blogPosts);
+//     } catch (error) {
+//         res.status(400).json({ message: error.message });
+//     }
+// });
 blogController.get('/allBlogs', async (req, res) => {
     try {
-        const blogPosts = await blogModel.find().populate('authorId', 'name');
-        res.json(blogPosts);
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 10;
+        const skip = (page - 1) * limit;
+
+        const blogPosts = await blogModel.find()
+            .skip(skip)
+            .limit(limit)
+            .populate('authorId', 'name');
+
+        const totalBlogs = await blogModel.countDocuments();
+
+        res.json({
+            blogs: blogPosts,
+            totalPages: Math.ceil(totalBlogs / limit),
+            currentPage: page
+        });
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
 });
+
 
 // Get all blogs by the authenticated user
 blogController.get('/myBlogs', authentication, async (req, res) => {
