@@ -24,7 +24,7 @@ blogController.get('/allBlogs', async (req, res) => {
         const blogPosts = await blogModel.find()
             .skip(skip)
             .limit(limit)
-            .populate('authorId', 'name');
+            .populate('authorId', 'username');
 
         const totalBlogs = await blogModel.countDocuments();
 
@@ -44,7 +44,7 @@ blogController.get('/myBlogs', authentication, async (req, res) => {
     const userId = req.userId; // Get userId from req object
 
     try {
-        const userBlogs = await blogModel.find({ authorId: userId }).populate('authorId', 'name');
+        const userBlogs = await blogModel.find({ authorId: userId }).populate('authorId', 'username');
         res.json(userBlogs);
     } catch (error) {
         res.status(400).json({ message: error.message });
