@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
-import { Box, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, FormControl, FormLabel, Input, Textarea, useToast, Text, Center } from '@chakra-ui/react';
+import { Box, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, FormControl, FormLabel, Input, Textarea, useToast, Text, Center, Spinner } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 
 const MyBlogs = () => {
     const [userBlogs, setUserBlogs] = useState([]);
+    const [loading, setLoading] = useState(true);
+
     const toast = useToast();
     const navigate = useNavigate();
     const token = JSON.parse(localStorage.getItem('token'));
@@ -33,6 +35,7 @@ const MyBlogs = () => {
 
                     const data = await response.json();
                     setUserBlogs(data);
+                    setLoading(false)
                 } catch (error) {
                     console.error('Error fetching user blogs:', error);
                     toast({
@@ -158,7 +161,15 @@ const MyBlogs = () => {
                         color="purple.300"
                         textTransform="uppercase"
                         letterSpacing="wider" mb={4}>My Blogs</Text>
-                    {userBlogs.length > 0 ? userBlogs.map(blog => {
+                    {loading ? <Center ml={"7px"}>
+                        <Spinner
+                            thickness='4px'
+                            speed='0.65s'
+                            emptyColor='gray.200'
+                            color='blue.500'
+                            size='xl'
+                        />
+                    </Center> : userBlogs.length > 0 ? userBlogs.map(blog => {
                         const createdAtDate = new Date(blog.createdAt);
                         const formattedDate = `${createdAtDate.toLocaleDateString()} ${createdAtDate.toLocaleTimeString()}`;
                         return (

@@ -20,7 +20,6 @@ function App() {
           <Route path="/blogs" element={<Blog />} />
           <Route path="/myBlogs" element={<MyBlogs />} />
           <Route path="/blogs/new" element={<CreateBlog />} />
-          {/* <Route path="/blogs/edit/:id" element={<EditBlog />} /> */}
         </Routes >
       </AuthProvider>
     </>

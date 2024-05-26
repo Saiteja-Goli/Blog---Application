@@ -95,7 +95,7 @@
 // export default Blog;
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
-import { Box, Button, Grid, Text, Flex, Heading, Center } from '@chakra-ui/react';
+import { Box, Button, Grid, Text, Flex, Heading, Center, Spinner } from '@chakra-ui/react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -105,6 +105,7 @@ const Blog = () => {
   const [totalPages, setTotalPages] = useState(1);
   const token = JSON.parse(localStorage.getItem('token'));
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchBlogs = async (page) => {
@@ -113,6 +114,7 @@ const Blog = () => {
         if (response.data && Array.isArray(response.data.blogs)) {
           setBlogs(response.data.blogs);
           setTotalPages(response.data.totalPages);
+          setLoading(false);
         } else {
           console.error('Invalid response format:', response.data);
         }
@@ -121,6 +123,7 @@ const Blog = () => {
       }
     };
     fetchBlogs(currentPage);
+
   }, [currentPage]);
 
   const handlePreviousPage = () => {
@@ -157,7 +160,15 @@ const Blog = () => {
         token ? (
           <>
             <Grid templateColumns="repeat(3, 1fr)" gap={6} px={4} mt={10}>
-              {blogs.length > 0 ? blogs.map(blog => {
+              {loading ? <Center ml={"700px"}>
+                <Spinner
+                  thickness='4px'
+                  speed='0.65s'
+                  emptyColor='gray.200'
+                  color='blue.500'
+                  size='xl'
+                />
+              </Center> : blogs.length > 0 ? blogs.map(blog => {
                 const createdAtDate = new Date(blog.createdAt);
                 const formattedDate = `${createdAtDate.toLocaleDateString()} ${createdAtDate.toLocaleTimeString()}`;
                 return (
@@ -168,7 +179,7 @@ const Blog = () => {
                     <Text mt={2}>Created At: {formattedDate}</Text>
                   </Box>
                 );
-              }) : <Center> <Text fontSize="2xl" fontWeight="bold" mb={4}>No Blogs</Text> </Center>}
+              }) : <Center ml={"700px"} > <Text fontSize="2xl" fontWeight="bold" mb={4}>No Blogs</Text> </Center>}
             </Grid>
             <Flex justify="center" mt={4}>
               <Button onClick={handlePreviousPage} isDisabled={currentPage === 1}>Previous</Button>
