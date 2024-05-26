@@ -17,7 +17,7 @@
 //   useEffect(() => {
 //     const fetchBlogs = async (page) => {
 //       try {
-//         const response = await axios.get(`http://localhost:8080/blogs/allBlogs?page=${page}&limit=3`);
+//         const response = await axios.get(`https://blog-application-evwg.onrender.com/blogs/allBlogs?page=${page}&limit=3`);
 //         setBlogs(response.data);
 //         setTotalPages(response.data.totalPages);
 //       } catch (error) {
@@ -109,8 +109,7 @@ const Blog = () => {
   useEffect(() => {
     const fetchBlogs = async (page) => {
       try {
-        const response = await axios.get(`http://localhost:8080/blogs/allBlogs?page=${page}&limit=5`);
-        console.log(response.data); // Log the response data
+        const response = await axios.get(`https://blog-application-evwg.onrender.com/blogs/allBlogs?page=${page}&limit=6`);
         if (response.data && Array.isArray(response.data.blogs)) {
           setBlogs(response.data.blogs);
           setTotalPages(response.data.totalPages);
@@ -165,7 +164,7 @@ const Blog = () => {
                   <Box key={blog._id} borderWidth="1px" borderRadius="lg" p={4}>
                     <Text fontSize="xl" fontWeight="bold">{blog.title}</Text>
                     <Text mt={2}>{blog.content}</Text>
-                    <Text mt={2} fontWeight="bold">Author: {blog.authorId._id}</Text>
+                    <Text mt={2} fontWeight="bold">Author: {blog.authorId.username}</Text>
                     <Text mt={2}>Created At: {formattedDate}</Text>
                   </Box>
                 );

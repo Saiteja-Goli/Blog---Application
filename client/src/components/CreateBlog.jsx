@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Navbar from './Navbar';
-import { Box, Button, Input, Textarea, useToast, Text } from '@chakra-ui/react';
+import { Box, Button, Input, Textarea, useToast, Text, Center, Heading } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 
 const CreateBlog = () => {
@@ -23,7 +23,7 @@ const CreateBlog = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:8080/blogs/postBlog', {
+      const response = await fetch('https://blog-application-evwg.onrender.com/blogs/postBlog', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -66,7 +66,7 @@ const CreateBlog = () => {
     return (
       <>
         <Navbar />
-        <Button colorScheme="red" ml={10} mt={"100px"}onClick={() => {
+        <Button colorScheme="red" ml={10} mt={"100px"} onClick={() => {
           navigate("/blogs");
         }}>Go Back</Button>
         <Box mt={"10px"} textAlign="center">
@@ -79,7 +79,14 @@ const CreateBlog = () => {
   return (
     <>
       <Navbar />
-      <Box mt={"100px"} mx="auto" w="50%" shadow="base" p={5} borderRadius={10}>
+      <Center mt={"100px"}>
+        <Heading fontSize="3xl"
+          fontWeight="bold"
+          color="purple.600"
+          textTransform="uppercase"
+          letterSpacing="wider">Create Your Blog</Heading>
+      </Center>
+      <Box mx="auto" w="50%" shadow="base" p={5} borderRadius={10}>
         <Box mb={4}>
           <Input
             placeholder="Title"

@@ -19,7 +19,7 @@ const MyBlogs = () => {
         if (token) {
             const fetchUserBlogs = async () => {
                 try {
-                    const response = await fetch('http://localhost:8080/blogs/myBlogs', {
+                    const response = await fetch('https://blog-application-evwg.onrender.com/blogs/myBlogs', {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ const MyBlogs = () => {
 
     const handleUpdate = async () => {
         try {
-            const response = await fetch(`http://localhost:8080/blogs/editBlog/${editBlogData.id}`, {
+            const response = await fetch(`https://blog-application-evwg.onrender.com/blogs/editBlog/${editBlogData.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -109,7 +109,7 @@ const MyBlogs = () => {
     const handleDelete = async (blogId) => {
         try {
             const token = JSON.parse(localStorage.getItem('token'));
-            const response = await fetch(`http://localhost:8080/blogs/deleteBlog/${blogId}`, {
+            const response = await fetch(`https://blog-application-evwg.onrender.com/blogs/deleteBlog/${blogId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -158,16 +158,16 @@ const MyBlogs = () => {
                         color="purple.300"
                         textTransform="uppercase"
                         letterSpacing="wider" mb={4}>My Blogs</Text>
-                    {userBlogs.length > 0  ? userBlogs.map(blog => {
+                    {userBlogs.length > 0 ? userBlogs.map(blog => {
                         const createdAtDate = new Date(blog.createdAt);
                         const formattedDate = `${createdAtDate.toLocaleDateString()} ${createdAtDate.toLocaleTimeString()}`;
                         return (
                             <Box key={blog._id} borderWidth="1px" borderRadius="lg" p={4} mb={4}>
                                 <Text fontSize="xl" fontWeight="bold">{blog.title}</Text>
                                 <Text mt={2}>{blog.content}</Text>
-                                <Text mt={2} fontWeight="bold">Author: {blog.authorId._id}</Text>
+                                <Text mt={2} fontWeight="bold">Author: {blog.authorId.username}</Text>
                                 <Text mt={2}>Created At: {formattedDate}</Text>
-                                <Box mt={2}>
+                                <Box mt={5}>
                                     <Button mr={2} colorScheme='teal' onClick={() => handleEdit(blog._id)}>Edit</Button>
                                     <Button colorScheme='red' onClick={() => handleDelete(blog._id)}>Delete</Button>
                                 </Box>
@@ -177,7 +177,7 @@ const MyBlogs = () => {
                 </Box>
             ) : (
                 <Center>
-                    <Text fontSize="2xl" mt={"100px"}fontWeight="bold">Please LogIn to view your blogs</Text>
+                    <Text fontSize="2xl" mt={"100px"} fontWeight="bold">Please LogIn to view your blogs</Text>
                 </Center>
             )}
             <Modal isOpen={isEditModalOpen} onClose={() => setIsEditModalOpen(false)}>
@@ -195,8 +195,8 @@ const MyBlogs = () => {
                         </FormControl>
                     </ModalBody>
                     <ModalFooter>
-                        <Button colorScheme="teal" onClick={handleUpdate}>Update</Button>
                         <Button onClick={() => setIsEditModalOpen(false)}>Cancel</Button>
+                        <Button colorScheme="whatsapp" onClick={handleUpdate} ml={2}>Update</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>
