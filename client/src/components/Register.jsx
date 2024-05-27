@@ -14,7 +14,7 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('https://blog-application-evwg.onrender.com/user/signup', {
+            const response = await fetch('http://localhost:8080/user/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -68,11 +68,11 @@ const Register = () => {
                 <form onSubmit={handleSubmit}>
                     <FormControl id="username" isRequired>
                         <FormLabel>Username</FormLabel>
-                        <Input type="text"  placeholder='Enter username'value={username} onChange={(e) => setUsername(e.target.value)} />
+                        <Input type="text" placeholder='Enter username' value={username} onChange={(e) => setUsername(e.target.value)} />
                     </FormControl>
                     <FormControl id="email" isRequired mt={4}>
                         <FormLabel>Email address</FormLabel>
-                        <Input type="email"  placeholder='Enter Email' value={email} onChange={(e) => setEmail(e.target.value)} />
+                        <Input type="email" placeholder='Enter Email' value={email} onChange={(e) => setEmail(e.target.value)} />
                     </FormControl>
                     <FormControl id="password" isRequired mt={4}>
                         <FormLabel>Password</FormLabel>

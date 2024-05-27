@@ -13,7 +13,7 @@
 //     useEffect(() => {
 //         const fetchBlog = async () => {
 //             try {
-//                 const response = await axios.get(`https://blog-application-evwg.onrender.com/blogs/${id}`);
+//                 const response = await axios.get(`http://localhost:8080/blogs/${id}`);
 //                 const { title, content } = response.data;
 //                 setTitle(title);
 //                 setContent(content);
@@ -33,7 +33,7 @@
 
 //     const handleSubmit = async () => {
 //         try {
-//             await axios.put(`https://blog-application-evwg.onrender.com/blogs/${id}`, { title, content });
+//             await axios.put(`http://localhost:8080/blogs/${id}`, { title, content });
 //             toast({
 //                 title: 'Blog Updated',
 //                 description: 'The blog has been updated successfully.',
