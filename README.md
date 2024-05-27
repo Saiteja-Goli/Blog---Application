@@ -2,7 +2,7 @@
 
 
 ## Introduction
-This application will allow users to Register, Login, Create, Edit, Delete, and Read blog posts.The project will be divided into backend and frontend components, and you will integrate them to create a seamless user experience.
+This application will allow users to Register, Login, Create, Edit, Delete, and Read blog posts. The project will be divided into backend and frontend components, and you will integrate them to create a seamless user experience.
 
 ## Project Type
 Frontend | Backend | Fullstack
@@ -17,8 +17,6 @@ Blog---Application/
 ├─ server/
 
 ## Features
-List out the key features of your application.
-
 ##### User Authentication
 - User Registration: Users can create a new account by providing a username, email, and password.
 - User Login: Users can log in using their registered email and password.
@@ -94,8 +92,8 @@ npm start
 ```
 
 ## Credentials
-email : sai1@gmail.com
-password : sai123
+email: sai1@gmail.com
+password: sai123
 
 ## Technologies Used
 
