@@ -8,8 +8,8 @@ This application will allow users to Register, Login, Create, Edit, Delete, and 
 Frontend | Backend | Fullstack
 
 ## Deplolyed App
-- Deployed Link : [Click Here](https://blog-application-tan-sigma.vercel.app/)
-- Backend : [Click Here](https://blog-application-evwg.onrender.com/)
+- Deployed Link : [Click Here](https://blog-application-3z49.vercel.app/)
+- Backend : [Click Here](https://blog-application-slj2.onrender.com/)
 
 ## Directory Structure
 Blog---Application/
