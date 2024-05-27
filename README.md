@@ -22,15 +22,14 @@ List out the key features of your application.
 ##### User Authentication
 - User Registration: Users can create a new account by providing a username, email, and password.
 - User Login: Users can log in using their registered email and password.
-- User Logout : User can Logout on their own.
-- Auto Logout: Users are automatically logged out after a certain period of inactivity.
+- User Logout: Users can Logout on their own.
 
 ##### Blog Management
 - Create Blog: Authenticated users can create new blog posts.
 - View All Blogs: Authenticated Users can view a list of all blogs with pagination.
 - View My Blogs: Authenticated users can view a list of blogs they have created.
-- Edit Blog Details: Authenticated users can edit their own specific blog posts.
-- Delete Blog : Authenticated users can delete their own specific blog posts.
+- Edit Blog Details: Authenticated users can edit their specific blog posts.
+- Delete Blog: Authenticated users can delete their specific blog posts.
 
 
 ##### Blog Features
@@ -45,7 +44,6 @@ List out the key features of your application.
 - Conditional Rendering: The login/logout button changes color and label based on the user's authentication status.
 - Button for Creating Blog: Users can navigate to the blog creation page using a dedicated button.
 - My Blogs Button: Users can quickly navigate to their own blogs using a dedicated button.
-- 
 
 
 ##### Backend
@@ -56,15 +54,6 @@ List out the key features of your application.
 - bcrypt: bcrypt is used for hashing and securely storing user passwords.
 - RESTful API: The application follows RESTful principles for API design.
 
-
-## Installation & Getting started
-Detailed instructions on how to install, configure, and get the project running. For BE/FS projects, guide the reviewer how to check mongodb schema etc.
-
-```bash
-npm install my-project
-cd my-project
-npm start
-```
 
 ## Getting Started
 Follow these instructions to set up and run the Movie App locally.
