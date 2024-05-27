@@ -5,7 +5,14 @@ const { connection } = require("./config/db");
 const { userController } = require('./routes/userRouter');
 const { blogController } = require('./routes/blogRouter');
 const app = express();
-app.use(cors())
+
+const corsOptions = {
+    origin: 'https://blog-application-tan-sigma.vercel.app',
+    methods: 'GET,PUT,PATCH,POST,DELETE',
+    credentials: true,
+    optionsSuccessStatus: 204
+}
+app.use(cors(corsOptions))
 app.use(express.json());
 
 
