@@ -68,11 +68,11 @@ const Register = () => {
                 <form onSubmit={handleSubmit}>
                     <FormControl id="username" isRequired>
                         <FormLabel>Username</FormLabel>
-                        <Input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+                        <Input type="text"  placeholder='Enter username'value={username} onChange={(e) => setUsername(e.target.value)} />
                     </FormControl>
                     <FormControl id="email" isRequired mt={4}>
                         <FormLabel>Email address</FormLabel>
-                        <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                        <Input type="email"  placeholder='Enter Email' value={email} onChange={(e) => setEmail(e.target.value)} />
                     </FormControl>
                     <FormControl id="password" isRequired mt={4}>
                         <FormLabel>Password</FormLabel>
