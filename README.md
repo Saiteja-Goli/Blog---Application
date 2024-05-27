@@ -88,7 +88,7 @@ Make sure you have the following installed:
 To start the development server:
 
 ```bash
-npm start
+npm run dev
 ```
 
 ## Credentials
