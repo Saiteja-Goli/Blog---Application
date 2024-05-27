@@ -9,8 +9,8 @@ const blogSchema = mongoose.Schema({
         required: true
     },
     createdAt: { type: Date, default: Date.now },
-    updatedAt: { type: Date, default: Date.now }
-    // likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
+    updatedAt: { type: Date, default: Date.now },
+    likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
 })
 
 const blogModel = mongoose.model('blog', blogSchema);

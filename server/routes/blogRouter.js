@@ -131,4 +131,6 @@ blogController.delete('/deleteBlog/:id', authentication, async (req, res) => {
     }
 });
 
+
+//Likes
 module.exports = { blogController };
