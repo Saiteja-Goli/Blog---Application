@@ -19,7 +19,7 @@ const Blog = () => {
   useEffect(() => {
     const fetchBlogs = async (page) => {
       try {
-        const response = await axios.get(`http://localhost:8080/blogs/allBlogs?page=${page}&limit=6`);
+        const response = await axios.get(`https://blog-application-48rx.onrender.com/blogs/allBlogs?page=${page}&limit=6`);
         if (response.data && Array.isArray(response.data.blogs)) {
           setBlogs(response.data.blogs);
           setTotalPages(response.data.totalPages);
@@ -52,7 +52,7 @@ const Blog = () => {
 
     setShowComments(true);
     try {
-      const response = await fetch(`http://localhost:8080/comments/get/${postId}`, {
+      const response = await fetch(`https://blog-application-48rx.onrender.com/comments/get/${postId}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}` // Include the JWT token here if needed
@@ -86,10 +86,9 @@ const Blog = () => {
     }));
   };
 
-
   const handlePostComment = async (newComment, blog) => {
     try {
-      const response = await fetch('http://localhost:8080/comments/postcomment', {
+      const response = await fetch('https://blog-application-48rx.onrender.com/comments/postcomment', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -121,7 +120,7 @@ const Blog = () => {
     console.log("commentId", commentId);
 
     try {
-      const response = await fetch(`http://localhost:8080/comments/delete/${commentId}`, {
+      const response = await fetch(`https://blog-application-48rx.onrender.com/comments/delete/${commentId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}` // Include the JWT token here if needed
@@ -155,6 +154,7 @@ const Blog = () => {
       });
     }
   };
+
   return (
     <>
       <Navbar />

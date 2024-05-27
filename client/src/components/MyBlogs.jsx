@@ -21,7 +21,7 @@ const MyBlogs = () => {
         if (token) {
             const fetchUserBlogs = async () => {
                 try {
-                    const response = await fetch('http://localhost:8080/blogs/myBlogs', {
+                    const response = await fetch('https://blog-application-48rx.onrender.com/blogs/myBlogs', {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',
@@ -65,7 +65,7 @@ const MyBlogs = () => {
 
     const handleUpdate = async () => {
         try {
-            const response = await fetch(`http://localhost:8080/blogs/editBlog/${editBlogData.id}`, {
+            const response = await fetch(`https://blog-application-48rx.onrender.com/blogs/editBlog/${editBlogData.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -112,7 +112,7 @@ const MyBlogs = () => {
     const handleDelete = async (blogId) => {
         try {
             const token = JSON.parse(localStorage.getItem('token'));
-            const response = await fetch(`http://localhost:8080/blogs/deleteBlog/${blogId}`, {
+            const response = await fetch(`https://blog-application-48rx.onrender.com/blogs/deleteBlog/${blogId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
