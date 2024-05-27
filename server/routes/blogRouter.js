@@ -15,17 +15,25 @@ const blogController = Router();
 //         res.status(400).json({ message: error.message });
 //     }
 // });
+// Define a route handler for GET requests to '/allBlogs'
 blogController.get('/allBlogs', async (req, res) => {
     try {
+        // Parse the 'page' and 'limit' query parameters, or default to 1 and 10 if not provided
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 10;
+        // Calculate the number of documents to skip based on the current page
         const skip = (page - 1) * limit;
 
+        // Fetch the blog posts from the database
+        // - Skip the first 'skip' documents
+        // - Limit the result to 'limit' documents
+        // - Populate the 'authorId' field with the 'username' of the user who created the blog post
         const blogPosts = await blogModel.find()
             .skip(skip)
             .limit(limit)
             .populate('authorId', 'username');
 
+        // Count the total number of blog posts in the database
         const totalBlogs = await blogModel.countDocuments();
 
         res.json({
