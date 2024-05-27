@@ -14,7 +14,7 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('https://blog-application-48rx.onrender.com/user/signup', {
+            const response = await fetch('https://blog-application-slj2.onrender.com/user/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -5,6 +5,8 @@ import { Box, Button, Grid, Text, useToast, Flex, Heading, Center, Spinner, Inpu
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Comments from './Comments';
+import Like from './LikeButton';
+import LikeButton from './LikeButton';
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([]); // Initialize as an array
@@ -15,11 +17,15 @@ const Blog = () => {
   const [selectedBlog, setSelectedBlog] = useState([]);
   const [showComments, setShowComments] = useState(false);
   const toast = useToast(); // Initialize useToast hook
+
+
+
+
   const token = JSON.parse(localStorage.getItem('token'));
   useEffect(() => {
     const fetchBlogs = async (page) => {
       try {
-        const response = await axios.get(`https://blog-application-48rx.onrender.com/blogs/allBlogs?page=${page}&limit=6`);
+        const response = await axios.get(`https://blog-application-slj2.onrender.com/blogs/allBlogs?page=${page}&limit=6`);
         if (response.data && Array.isArray(response.data.blogs)) {
           setBlogs(response.data.blogs);
           setTotalPages(response.data.totalPages);
@@ -32,7 +38,6 @@ const Blog = () => {
       }
     };
     fetchBlogs(currentPage);
-
   }, [currentPage]);
 
   const handlePreviousPage = () => {
@@ -52,7 +57,7 @@ const Blog = () => {
 
     setShowComments(true);
     try {
-      const response = await fetch(`https://blog-application-48rx.onrender.com/comments/get/${postId}`, {
+      const response = await fetch(`https://blog-application-slj2.onrender.com/comments/get/${postId}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}` // Include the JWT token here if needed
@@ -88,7 +93,7 @@ const Blog = () => {
 
   const handlePostComment = async (newComment, blog) => {
     try {
-      const response = await fetch('https://blog-application-48rx.onrender.com/comments/postcomment', {
+      const response = await fetch('https://blog-application-slj2.onrender.com/comments/postcomment', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -120,7 +125,7 @@ const Blog = () => {
     console.log("commentId", commentId);
 
     try {
-      const response = await fetch(`https://blog-application-48rx.onrender.com/comments/delete/${commentId}`, {
+      const response = await fetch(`https://blog-application-slj2.onrender.com/comments/delete/${commentId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}` // Include the JWT token here if needed
@@ -154,6 +159,7 @@ const Blog = () => {
       });
     }
   };
+
 
   return (
     <>
@@ -200,6 +206,9 @@ const Blog = () => {
                       <Button colorScheme="teal" mr={2} onClick={() => handlePostComment(commentInputs[blog._id], blog)}>Post</Button>
                       <Button colorScheme="teal" onClick={() => handleBlogClick(blog)}>Open Comments</Button>
                     </Flex>
+                    <LikeButton blog={blog} />
+                    <Box>
+                    </Box>
                   </Box>
 
                 );

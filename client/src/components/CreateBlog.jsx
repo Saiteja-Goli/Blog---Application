@@ -23,7 +23,7 @@ const CreateBlog = () => {
     }
 
     try {
-      const response = await fetch('https://blog-application-48rx.onrender.com/blogs/postBlog', {
+      const response = await fetch('https://blog-application-slj2.onrender.com/blogs/postBlog', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
