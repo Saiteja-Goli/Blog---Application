@@ -7,11 +7,12 @@ const { blogController } = require('./routes/blogRouter');
 const app = express();
 
 const corsOptions = {
-    origin: 'https://blog-application-tan-sigma.vercel.app',
-    methods: 'GET,PUT,PATCH,POST,DELETE',
-    credentials: true,
+    origin: 'https://blog-application-tan-sigma.vercel.app', // Frontend URL
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true, 
     optionsSuccessStatus: 204
-}
+};
+
 app.use(cors(corsOptions))
 app.use(express.json());
 

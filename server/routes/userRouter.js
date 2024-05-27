@@ -16,7 +16,7 @@ userController.post('/signup', async (req, res) => {
         const emailExists = await userModel.findOne({ email });
 
         if (emailExists) {
-            return res.send(400).json({ message: "User Already Exists" });
+            return res.status(400).json({ message: "User Already Exists" });
         }
 
         // Hash the password
@@ -31,17 +31,16 @@ userController.post('/signup', async (req, res) => {
 
         // Save the user to the database
         await user.save();
-        res.send(201).json({ message: "SignUp Successful" });
+        res.status(201).json({ message: "SignUp Successful" });
     } catch (error) {
         console.error(error);
-        res.send(500).json({ message: "Signup Failure" });
+        res.status(500).json({ message: "Signup Failure" });
     }
 });
 
 // Route for user login
 userController.post("/login", async (req, res) => {
     try {
-
         const { email, password } = req.body;
 
         // Find the user by email
